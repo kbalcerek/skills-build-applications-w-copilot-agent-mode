@@ -4,6 +4,8 @@
         "npm install": true,
         "mkdir": true,
         "npm init": true,
-        "npm run build": true
+        "npm run build": true,
+        "npm --prefix octofit-tracker/backend": true,
+        "npm --prefix /workspaces/skills-build-applications-w-copilot-agent-mode/octofit-tracker/backend": true
     }
 }
