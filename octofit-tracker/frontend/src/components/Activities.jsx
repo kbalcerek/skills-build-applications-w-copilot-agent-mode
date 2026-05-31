@@ -27,6 +27,9 @@ const columns = [
   },
 ]
 
+const codespaceEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+const fallbackEndpoint = 'http://localhost:8000/api/activities/'
+
 function Activities() {
   return (
     <ResourcePage
@@ -34,6 +37,8 @@ function Activities() {
       title="Activities"
       description="Monitor logged activity types, workout durations, calorie burn, and timestamps."
       columns={columns}
+      codespaceEndpoint={codespaceEndpoint}
+      fallbackEndpoint={fallbackEndpoint}
     />
   )
 }

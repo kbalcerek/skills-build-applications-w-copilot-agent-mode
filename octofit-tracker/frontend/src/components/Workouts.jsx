@@ -24,6 +24,9 @@ const columns = [
   },
 ]
 
+const codespaceEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`
+const fallbackEndpoint = 'http://localhost:8000/api/workouts/'
+
 function Workouts() {
   return (
     <ResourcePage
@@ -31,6 +34,8 @@ function Workouts() {
       title="Workouts"
       description="Review suggested workouts, target fitness levels, and included activity types."
       columns={columns}
+      codespaceEndpoint={codespaceEndpoint}
+      fallbackEndpoint={fallbackEndpoint}
     />
   )
 }

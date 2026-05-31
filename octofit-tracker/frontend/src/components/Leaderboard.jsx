@@ -23,6 +23,9 @@ const columns = [
   },
 ]
 
+const codespaceEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+const fallbackEndpoint = 'http://localhost:8000/api/leaderboard/'
+
 function Leaderboard() {
   return (
     <ResourcePage
@@ -30,6 +33,8 @@ function Leaderboard() {
       title="Leaderboard"
       description="Surface competitive standings with ranks, points, and the period each entry covers."
       columns={columns}
+      codespaceEndpoint={codespaceEndpoint}
+      fallbackEndpoint={fallbackEndpoint}
     />
   )
 }

@@ -16,6 +16,9 @@ const columns = [
   },
 ]
 
+const codespaceEndpoint = `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/`
+const fallbackEndpoint = 'http://localhost:8000/api/teams/'
+
 function Teams() {
   return (
     <ResourcePage
@@ -23,6 +26,8 @@ function Teams() {
       title="Teams"
       description="Track team creation, descriptions, and roster sizes for group competition."
       columns={columns}
+      codespaceEndpoint={codespaceEndpoint}
+      fallbackEndpoint={fallbackEndpoint}
     />
   )
 }

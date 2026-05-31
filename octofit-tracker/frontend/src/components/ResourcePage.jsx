@@ -10,6 +10,18 @@ const getApiBaseUrl = () => {
   return 'http://localhost:8000/api'
 }
 
+const getEndpointUrl = (resource, codespaceEndpoint, fallbackEndpoint) => {
+  if (import.meta.env.VITE_CODESPACE_NAME && codespaceEndpoint) {
+    return codespaceEndpoint
+  }
+
+  if (fallbackEndpoint) {
+    return fallbackEndpoint
+  }
+
+  return `${getApiBaseUrl()}/${resource}/`
+}
+
 const formatValue = (value, formatter) => {
   if (formatter) {
     return formatter(value)
@@ -58,7 +70,7 @@ const normalizePayload = (payload) => {
   }
 }
 
-function ResourcePage({ resource, title, description, columns }) {
+function ResourcePage({ resource, title, description, columns, codespaceEndpoint, fallbackEndpoint }) {
   const [items, setItems] = useState([])
   const [meta, setMeta] = useState({ total: 0, page: null, pageSize: null })
   const [error, setError] = useState('')
@@ -66,7 +78,7 @@ function ResourcePage({ resource, title, description, columns }) {
 
   useEffect(() => {
     const controller = new AbortController()
-    const endpoint = `${getApiBaseUrl()}/${resource}/`
+    const endpoint = getEndpointUrl(resource, codespaceEndpoint, fallbackEndpoint)
 
     const loadResource = async () => {
       setLoading(true)
@@ -101,7 +113,7 @@ function ResourcePage({ resource, title, description, columns }) {
     return () => {
       controller.abort()
     }
-  }, [resource])
+  }, [codespaceEndpoint, fallbackEndpoint, resource])
 
   return (
     <section className="resource-view">
